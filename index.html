@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: #f8c4b4;
+                display:grid;
+                place-items: center;
+                min-height: 100vh;
+            }
+
+            .container{
+                position: relative;
+            }
+
+            .valentines{
+                position: relative;
+                top: 50px;
+                cursor: pointer;
+            }
+
+            .envelope{
+                position: relative;
+                width: 300px;
+                height: 200px;
+                background: #9b3434;
+                display: grid;
+                place-items: center;
+            }
+
+            .welcome{
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                text-align: center;
+            }
+
+            .front{
+                position: absolute;
+                border-right: 180px solid #813737;
+                border-top: 95px solid transparent;
+                border-bottom: 100px solid transparent;
+                left: 120px;
+                top: 5px;
+                width: 0;
+                height: 0;
+                z-index: 10;
+            }
+
+            .front::before{
+                position: absolute;
+                content: '';
+                border-left: 300px solid #8f3d3d;
+                border-top: 195px solid transparent;
+                left: -120px;
+                top: -95px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class = "container">
+            <div class="welcome">
+                <text>Hiiii! <br> Click the envelope to continue. xoxo</text>
+            </div>
+            <div class = "valentines" id="envelope">
+                <div class = "envelope"></div>
+                <div class="front"></div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+
+        <script>
+            document.getElementById("envelope").addEventListener("click",function(event){
+                event.preventDefault();
+
+                const defaults = {
+                    spread: 360,
+                    ticks: 100,
+                    gravity: 0,
+                    decay: 0.94,
+                    startVelocity: 30,
+                    shapes: ["heart"],
+                    colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+                };
+
+                confetti({
+                    ...defaults,
+                    particleCount: 50,
+                    scalar: 2,
+                });
+
+                confetti({
+                    ...defaults,
+                    particleCount: 25,
+                    scalar: 3,
+                });
+
+                confetti({
+                    ...defaults,
+                    particleCount: 10,
+                    scalar: 4,
+                });
+
+                setTimeout(() =>{
+                    window.location.href="opened.html";
+                },1000); //adjust timing if needed
+
+            });
+        </script>
+
+    </body>
+</html>
